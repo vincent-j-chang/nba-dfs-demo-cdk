@@ -14,7 +14,7 @@ class CsvStorageBucket(Construct):
         # Create S3 bucket to store CSV files
         self.bucket = s3.Bucket(
             self, 
-            "CsvBucket",
+            "aws-dfs-demo-cdk-bucket",
             removal_policy=RemovalPolicy.RETAIN,  # Protect against accidental deletion
             encryption=s3.BucketEncryption.S3_MANAGED,  # Enable encryption
             block_public_access=s3.BlockPublicAccess.BLOCK_ALL,  # Security best practice

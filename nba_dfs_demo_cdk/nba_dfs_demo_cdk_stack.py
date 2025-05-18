@@ -1,12 +1,14 @@
 from constructs import Construct
-from aws_cdk import (Stack,
-                     aws_s3 as s3)
-
-
+from aws_cdk import Stack
+# Import all constructs
+from nba_dfs_demo_cdk.constructs.storage import CsvStorageBucket
+# These will be uncommented when you implement them
+# from nba_dfs_demo_cdk.constructs.email import EmailService
+# from nba_dfs_demo_cdk.constructs.processing import CsvProcessor
 
 class NbaDfsDemoCdkStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs):
         super().__init__(scope, construct_id, **kwargs)
         
         # Create S3 storage
-        bucket = s3.Bucket(self, "nba-dfs-demo-cdk")
+        self.storage = CsvStorageBucket(self, "CsvStorage")

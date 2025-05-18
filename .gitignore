@@ -1,14 +1,31 @@
-*.swp
-package-lock.json
-.pytest_cache
-*.egg-info
+# CDK asset staging directory
+.cdk.staging
+cdk.out/
 
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
-# Environments
+# Virtual Environment
 .env
 .venv
 env/
@@ -17,6 +34,15 @@ ENV/
 env.bak/
 venv.bak/
 
-# CDK Context & Staging files
-.cdk.staging/
-cdk.out/
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db
+
+# AWS SAM
+.aws-sam/

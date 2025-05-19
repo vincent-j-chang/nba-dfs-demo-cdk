@@ -1,26 +1,14 @@
 from constructs import Construct
-from aws_cdk import (
-    Duration,
-    Stack,
-    aws_iam as iam,
-    aws_sqs as sqs,
-    aws_sns as sns,
-    aws_sns_subscriptions as subs,
-)
-
+from aws_cdk import Stack
+# Import all constructs
+from nba_dfs_demo_cdk.constructs.storage import CsvStorageBucket
+# These will be uncommented when you implement them
+# from nba_dfs_demo_cdk.constructs.email import EmailService
+# from nba_dfs_demo_cdk.constructs.processing import CsvProcessor
 
 class NbaDfsDemoCdkStack(Stack):
-
-    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, construct_id: str, **kwargs):
         super().__init__(scope, construct_id, **kwargs)
-
-        queue = sqs.Queue(
-            self, "NbaDfsDemoCdkQueue",
-            visibility_timeout=Duration.seconds(300),
-        )
-
-        topic = sns.Topic(
-            self, "NbaDfsDemoCdkTopic"
-        )
-
-        topic.add_subscription(subs.SqsSubscription(queue))
+        
+        # Create S3 storage
+        self.storage = CsvStorageBucket(self, "CsvStorage")

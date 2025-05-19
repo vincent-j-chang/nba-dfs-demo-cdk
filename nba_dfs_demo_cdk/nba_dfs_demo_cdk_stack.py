@@ -16,6 +16,6 @@ class NbaDfsDemoCdkStack(Stack):
         # Create Lambda and connect to the S3 bucket
         self.processor = CsvProcessor(
             self, 
-            "CsvProcessor"
+            "CsvProcessor",
             storage_bucket=self.storage_bucket
         )

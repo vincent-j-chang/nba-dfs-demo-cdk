@@ -17,5 +17,5 @@ class NbaDfsDemoCdkStack(Stack):
         self.processor = CsvProcessor(
             self, 
             "CsvProcessor",
-            storage_bucket=self.storage_bucket
+            storage_bucket=self.storage.bucket
         )

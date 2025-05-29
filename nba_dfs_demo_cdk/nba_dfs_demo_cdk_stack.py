@@ -1,9 +1,7 @@
 from constructs import Construct
 from aws_cdk import Stack
-# Import all constructs
-from nba_dfs_demo_cdk.constructs.storage import CsvStorageBucket
-# These will be uncommented when you implement them
-# from nba_dfs_demo_cdk.constructs.email import EmailService
+from nba_dfs_demo_cdk.constructs.storage import RawEmailFilesBucket, CsvStorageBucket
+from nba_dfs_demo_cdk.constructs.email import EmailService
 from nba_dfs_demo_cdk.constructs.processing import CsvProcessor
 
 class NbaDfsDemoCdkStack(Stack):
@@ -11,7 +9,15 @@ class NbaDfsDemoCdkStack(Stack):
         super().__init__(scope, construct_id, **kwargs)
         
         # Create S3 storage
+        self.raw_email_storage = RawEmailFilesBucket(self, "RawEmailStorage")
         self.storage = CsvStorageBucket(self, "CsvStorage")
+
+        # Create SES service
+        self.email_service= EmailService(
+            self,
+            "EmailService",
+            storage_bucket=self.storage.bucket
+        )
 
         # Create Lambda and connect to the S3 bucket
         self.processor = CsvProcessor(

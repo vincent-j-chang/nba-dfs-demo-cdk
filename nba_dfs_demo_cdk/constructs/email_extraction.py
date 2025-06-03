@@ -23,12 +23,11 @@ class EmailExtraction(Construct):
             "EmailExtractionFunction",
             runtime=_lambda.Runtime.PYTHON_3_12,
             handler="index.lambda_handler",
-            code=_lambda.Code.from_asset("lambda/email_extraction/"),
+            code=_lambda.Code.from_asset("lambda/email_extraction"),
             timeout=Duration.minutes(5),  # Email processing might take some time
             memory_size=512,  # Enough memory for Email processing
             environment={
-                "SOURCE_BUCKET": raw_email_bucket.bucket_name,
-                "DESTINATION_BUCKET": csv_bucket.bucket_name
+                "CSV_BUCKET_NAME": csv_bucket.bucket_name
             }
         )
         

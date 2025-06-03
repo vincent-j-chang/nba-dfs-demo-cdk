@@ -22,7 +22,7 @@ class CsvProcessor(Construct):
             "CsvProcessorFunction",
             runtime=_lambda.Runtime.PYTHON_3_12,
             handler="index.lambda_handler",
-            code=_lambda.Code.from_asset("lambda/process_csv"),
+            code=_lambda.Code.from_asset("lambda/csv_processing"),
             timeout=Duration.minutes(5),  # CSV processing might take some time
             memory_size=512,  # Enough memory for CSV processing
             environment={

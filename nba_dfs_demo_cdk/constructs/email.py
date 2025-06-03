@@ -21,7 +21,7 @@ class EmailService(Construct):
             "CsvEmailRuleSet",
             rules=[
                 ses.ReceiptRuleOptions(
-                    recipients=["csvprocessing@dfs-demo-org.awsapps.com"],  # Replace with your domain
+                    recipients=["vincentchang.dev@gmail.com"],  # Replace with your domain
                     actions=[
                         actions.S3(
                             bucket=storage_bucket,

@@ -32,6 +32,18 @@ class CsvProcessor(Construct):
         
         # Grant Lambda permission to read from S3 bucket
         storage_bucket.grant_read(self.lambda_function)
+
+        # Grant Lambda permission to send emails via SES
+        self.lambda_function.add_to_role_policy(
+            iam.PolicyStatement(
+                effect=iam.Effect.ALLOW,
+                actions=[
+                    "ses:SendEmail",
+                    "ses:SendRawEmail"
+                ],
+                resources=["*"]  # You can restrict this to specific verified email addresses if needed
+            )
+        )
         
         # Set up S3 event notification to trigger Lambda
         storage_bucket.add_event_notification(
